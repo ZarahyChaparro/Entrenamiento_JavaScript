@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group {
+    display: flex;
+}
+
+input, button {
+    padding: 10px;
+    margin-right: 10px;
+    flex: 1;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+.result-container {
+    font-size: 16px;
+    color: #333;
+}
+
+
+/* site.css */
+
+/* Otras reglas de estilo... */
+
+
+
+.navbar {
+    background-color: #28a745; /* Barra de navegación en verde */
+}
+
+#btnBuscar {
+    background-color: #007bff; /* Fondo del botón en azul */
+    color: #ffffff; /* Texto del botón en blanco */
+}
+
+h2 {
+    color: #333333; /* Texto del título h2 en gris oscuro */
+}
+

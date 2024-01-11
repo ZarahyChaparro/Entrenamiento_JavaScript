@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Buscar Libros";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <div class="input-container">
+        <label for="txtConsulta">Ingrese un término de búsqueda:</label>
+        <div class="input-group">
+            <input type="text" id="txtConsulta" />
+            <button id="btnBuscar">Buscar</button>
+        </div>
+    </div>
+    <div id="resultados" class="result-container"></div>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2024 - Proyecto_JavaScript - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+
+<link href="~/css/site.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(function () {
+        $("#btnBuscar").click(function () {
+            var consulta = $("#txtConsulta").val();
+            $.ajax({
+                url: "/Home/BuscarLibros",
+                type: "POST",
+                data: { consulta: consulta },
+                success: function (data) {
+                    mostrarResultados(data);
+                },
+                error: function (error) {
+                    console.error('Error en la solicitud Ajax:', error);
+                }
+            });
+        });
+
+        function mostrarResultados(data) {
+            var resultadosDiv = $("#resultados");
+            resultadosDiv.empty();
+
+            var libros = JSON.parse(data).items;
+
+            if (libros && libros.length > 0) {
+                resultadosDiv.append("<h3>Resultados de la Búsqueda</h3>");
+                libros.forEach(function (libro) {
+                    resultadosDiv.append("<p><strong>Título:</strong> " + libro.volumeInfo.title + "</p>");
+                    resultadosDiv.append("<p><strong>Autor(es):</strong> " + (libro.volumeInfo.authors ? libro.volumeInfo.authors.join(", ") : "Desconocido") + "</p>");
+                    resultadosDiv.append("<p><strong>Editorial:</strong> " + (libro.volumeInfo.publisher ? libro.volumeInfo.publisher : "Desconocida") + "</p>");
+                    resultadosDiv.append("<hr>");
+                });
+            } else {
+                resultadosDiv.append("<p>No se encontraron resultados para la búsqueda.</p>");
+            }
+        }
+    });
+</script>
+
